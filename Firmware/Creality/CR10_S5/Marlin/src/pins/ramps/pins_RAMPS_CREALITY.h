@@ -27,6 +27,12 @@
 
 #define BOARD_INFO_NAME "Creality v2.2.1 (RAMPS 1.3)"
 
+/**
+ * WARNING!
+ * Adjust Vref of E1 (new Z2) and Z stepper drivers to avoid overheating 42-34 stepper motors
+ * Vref for TMC2208: https://www.youmaketech.com/how-to-adjust-stepper-motor-currents-on-ender-3-pro-v2/
+ */
+
 // use E1 stepper as Z2 to enable G34
 #define E1_STEP_PIN                         -1
 #define E1_DIR_PIN                          -1
