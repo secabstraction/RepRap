@@ -15,33 +15,38 @@ M586 P1 S0                                     ; disable FTP
 M586 P2 S0                                     ; disable Telnet
 
 ; Drives
-M569 P0 S0                                     ; physical drive 0 goes forwards using default driver timings
-M569 P1 S0                                     ; physical drive 1 goes forwards using default driver timings
-M569 P2 S0                                     ; physical drive 2 goes forwards using default driver timings
-M569 P3 S0                                     ; physical drive 3 goes forwards using default driver timings
-M569 P4 S0                                     ; physical drive 4 goes forwards using default driver timings
+M569 P0 S0 D3 V70                              ; physical drive 0 goes backwards using default driver timings
+M915 P0 H70
+M569 P1 S0 D3 V70                              ; physical drive 1 goes backwards using default driver timings
+M915 P1 H70
+M569 P2 S1 D3 V70                              ; physical drive 2 goes forwards using default driver timings
+M915 P2 H70
+M569 P3 S1 D3 V70                              ; physical drive 3 goes forwards using default driver timings
+M915 P3 H70
+M569 P4 S0 D2
 M584 X0 Y1 Z2:3 E4                             ; set drive mapping
 M350 X16 Y16 Z16 E16 I1                        ; configure microstepping with interpolation
 M92 X80.00 Y80.00 Z400.00 E400.00              ; set steps per mm
 M566 X900.00 Y900.00 Z60.00 E120.00            ; set maximum instantaneous speed changes (mm/min)
 M203 X6000.00 Y6000.00 Z240.00 E1200.00        ; set maximum speeds (mm/min)
 M201 X500.00 Y500.00 Z20.00 E250.00            ; set accelerations (mm/s^2)
-M906 X800 Y800 Z600 E800 I30                   ; set motor currents (mA) and motor idle factor in per cent
+M906 X1200 Y1200 Z800 E1000                    ; set motor currents (mA) and motor idle factor in percent
 M84 S0                                         ; Disable motor idle current reduction
 
 ; Axis Limits
 M208 X0 Y0 Z0 S1                               ; set axis minima
-M208 X305 Y310 Z405 S0                         ; set axis maxima
+M208 X325 Y320 Z405 S0                         ; set axis maxima
 
 ; Endstops
 M574 X1 S1 P"xstop"                            ; configure switch-type (e.g. microswitch) endstop for low end on X via pin xstop
 M574 Y1 S1 P"ystop"                            ; configure switch-type (e.g. microswitch) endstop for low end on Y via pin ystop
+M574 Z1 S2                                     ; configure Z-probe endstop for low end on Z
 
 ; Z-Probe
 M950 S0 C"servo0"                              ; create servo pin 0 for BLTouch
 M558 P9 C"^probe" H5 F120 T6000                ; set Z probe type to bltouch and the dive height + speeds
-G31 P500 X-41 Y0 Z5                            ; set Z probe trigger value, offset and trigger height
-M557 X25:285 Y25:285 S65                       ; define mesh grid
+G31 X-41 Y-15 Z2.5                             ; set Z probe trigger value, offset and trigger height
+M557 X25:275 Y25:275 S50                       ; define mesh grid
 
 ; Heaters
 M308 S0 P"bedtemp" Y"thermistor" T100000 B4092 ; configure sensor 0 as thermistor on pin bedtemp
@@ -62,12 +67,12 @@ M106 P1 S0 H1 T50                              ; set fan 1 value. Thermostatic c
 
 ; Tools
 M563 P0 D0 H1 F0:1                             ; define tool 0
-G10 P0 X0 Y0 Z-2.7                             ; set tool 0 axis offsets
+G10 P0 X0 Y0 Z0                             ; set tool 0 axis offsets
 G10 P0 R0 S0                                   ; set initial tool 0 active and standby temperatures to 0C
 
 ; Custom settings are not defined
 M575 P1 S2 B57600                              ; enable support for PanelDue
-M671 X-10:300 Y155:155                         ; The location of the two Z axis screws
+M671 X-25:335 Y155:155 S3                      ; The location of the two Z axis screws
 
 ; Miscellaneous
 M501                                           ; load saved parameters from non-volatile memory
