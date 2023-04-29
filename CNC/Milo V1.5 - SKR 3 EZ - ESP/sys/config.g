@@ -49,7 +49,7 @@ M425 Z0                         ; Set backlash compensation for the Z axis
 
 ; Miscellaneous
 M575 P1 S2 B57600               ; enable support for tft
-M140 H-1						; Disable heated bed
-M564 S1 H1 						; Disable jog commands when not homed
-M501							; Load Stored Parameters 
+M140 H-1                        ; Disable heated bed
+M564 S1 H1                      ; Disable jog commands when not homed
+M501                            ; Load Stored Parameters 
 M5                              ; STOP SPINDLE
