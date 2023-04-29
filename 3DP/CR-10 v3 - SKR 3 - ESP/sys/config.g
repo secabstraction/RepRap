@@ -66,14 +66,14 @@ M106 P1 S0 H1 T50                              ; set fan 1 value. Thermostatic c
 
 ; Tools
 M563 P0 D0 H1 F0:1                             ; define tool 0
-G10 P0 X0 Y0 Z0                             ; set tool 0 axis offsets
+G10 P0 X0 Y0 Z0                                ; set tool 0 axis offsets
 G10 P0 R0 S0                                   ; set initial tool 0 active and standby temperatures to 0C
 
 ; Custom settings are not defined
-M575 P1 S2 B57600                              ; enable support for PanelDue
-M671 X-25:335 Y155:155 S3                      ; The location of the two Z axis screws
-M80 C"pson"                                   ; inverts the PS_ON output for BTT relay
 
 ; Miscellaneous
+M575 P1 S2 B57600                              ; enable support for PanelDue
+M671 X-25:335 Y155:155 S3                      ; The location of the two Z axis screws
+M80 C"pson"                                    ; set PS_ON active for BTT auto-shutdown relay
 M501                                           ; load saved parameters from non-volatile memory
 T0

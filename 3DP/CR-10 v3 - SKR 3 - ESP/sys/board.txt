@@ -15,7 +15,7 @@ board = biquskr_3;
 //Comment out or set to NoPin if not wanted.
 leds.diagnostic = A.13;
 
-atx.PowerPinInverted = 1;
+atx.powerPinInverted = 1;
 
 //Thermistor Settings
 heat.tempSensePins = {bedtemp,e0temp}; //Max of 3 entries
